@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Heart Disease Prediction | Vihara Tech</title>
+
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+
+            background: #f5f7fb;
+
+            color: #172033;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================================
+           NAVIGATION BAR
+        ========================================= */
+
+        .navbar {
+
+            width: 100%;
+
+            height: 76px;
+
+            background: #ffffff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 8%;
+
+            border-bottom: 1px solid #e8ebf2;
+
+            position: relative;
+
+            z-index: 20;
+        }
+
+
+        /* =========================================
+           VIHARA TECH LOGO
+        ========================================= */
+
+        .logo {
+
+            width: 190px;
+
+            height: 58px;
+
+            object-fit: contain;
+
+            object-position: left center;
+
+            display: block;
+
+            /*
+                Your uploaded logo is JPEG and has
+                a white background.
+
+                multiply helps the white portion
+                blend with the white navbar.
+            */
+
+            mix-blend-mode: multiply;
+        }
+
+
+        /* =========================================
+           NAV RIGHT
+        ========================================= */
+
+        .nav-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 25px;
+        }
+
+
+        .nav-link {
+
+            color: #27364d;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .nav-button {
+
+            padding: 10px 18px;
+
+            background: #3157d5;
+
+            color: white;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            box-shadow:
+                0 5px 12px rgba(49, 87, 213, 0.20);
+        }
+
+
+        /* =========================================
+           HERO SECTION
+        ========================================= */
+
+        .hero {
+
+            min-height: 470px;
+
+            background:
+                linear-gradient(
+                    115deg,
+                    #101d3d 0%,
+                    #172d5b 50%,
+                    #3157a8 100%
+                );
+
+            position: relative;
+
+            overflow: hidden;
+
+            color: white;
+        }
+
+
+        /* Decorative circle */
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 550px;
+
+            height: 550px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.10);
+
+            right: -180px;
+
+            top: -250px;
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 380px;
+
+            height: 380px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            right: 15%;
+
+            bottom: -290px;
+        }
+
+
+        /* =========================================
+           HERO CONTAINER
+        ========================================= */
+
+        .hero-container {
+
+            width: 84%;
+
+            max-width: 1250px;
+
+            margin: auto;
+
+            min-height: 470px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 50px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* =========================================
+           HERO CONTENT
+        ========================================= */
+
+        .hero-content {
+
+            width: 55%;
+
+            padding-bottom: 30px;
+        }
+
+
+        .hero-label {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            background: rgba(255,255,255,0.10);
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            border-radius: 30px;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            margin-bottom: 22px;
+        }
+
+
+        .status-dot {
+
+            width: 7px;
+
+            height: 7px;
+
+            background: #61e7c0;
+
+            border-radius: 50%;
+
+            display: inline-block;
+        }
+
+
+        .hero h1 {
+
+            font-size: 52px;
+
+            line-height: 1.08;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 20px;
+
+            max-width: 650px;
+        }
+
+
+        .hero h1 span {
+
+            color: #6ed7ff;
+        }
+
+
+        .hero-description {
+
+            max-width: 600px;
+
+            color: #cbd6ec;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* =========================================
+           HERO FEATURES
+        ========================================= */
+
+        .hero-features {
+
+            display: flex;
+
+            gap: 25px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .hero-feature {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 12px;
+
+            color: #dce5f7;
+        }
+
+
+        .check {
+
+            width: 20px;
+
+            height: 20px;
+
+            border-radius: 50%;
+
+            background: rgba(110,215,255,0.15);
+
+            color: #6ed7ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================
+           HERO VISUAL
+        ========================================= */
+
+        .hero-visual {
+
+            width: 40%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            position: relative;
+        }
+
+
+        .medical-circle {
+
+            width: 285px;
+
+            height: 285px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.15),
+                    rgba(255,255,255,0.04)
+                );
+
+            border: 1px solid rgba(255,255,255,0.20);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.20);
+        }
+
+
+        .heart {
+
+            font-size: 105px;
+
+            filter:
+                drop-shadow(
+                    0 10px 20px rgba(0,0,0,0.25)
+                );
+
+            animation: heartbeat 2s infinite;
+        }
+
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+
+                transform: scale(1);
+
+            }
+
+            10% {
+
+                transform: scale(1.08);
+
+            }
+
+            20% {
+
+                transform: scale(1);
+
+            }
+
+            30% {
+
+                transform: scale(1.06);
+
+            }
+
+            40% {
+
+                transform: scale(1);
+
+            }
+        }
+
+
+        /* =========================================
+           FLOATING CARDS
+        ========================================= */
+
+        .floating-card {
+
+            position: absolute;
+
+            background: white;
+
+            color: #172033;
+
+            padding: 13px 17px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 12px 35px rgba(0,0,0,0.20);
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        .floating-card.one {
+
+            top: 35px;
+
+            right: 0;
+        }
+
+
+        .floating-card.two {
+
+            bottom: 25px;
+
+            left: 0;
+        }
+
+
+        .floating-number {
+
+            display: block;
+
+            font-size: 18px;
+
+            color: #3157d5;
+
+            margin-bottom: 3px;
+        }
+
+
+        /* =========================================
+           CONTENT
+        ========================================= */
+
+        .content {
+
+            width: 84%;
+
+            max-width: 1250px;
+
+            margin: -55px auto 0;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        /* =========================================
+           FORM CARD
+        ========================================= */
+
+        .form-card {
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 38px;
+
+            box-shadow:
+                0 20px 60px rgba(22, 35, 62, 0.12);
+
+            border: 1px solid #e8ebf2;
+        }
+
+
+        /* =========================================
+           FORM HEADER
+        ========================================= */
+
+        .form-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding-bottom: 25px;
+
+            margin-bottom: 28px;
+
+            border-bottom: 1px solid #edf0f5;
+        }
+
+
+        .form-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .form-icon {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 12px;
+
+            background: #eef3ff;
+
+            color: #3157d5;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+        }
+
+
+        .form-header h2 {
+
+            font-size: 21px;
+
+            color: #172033;
+
+            margin-bottom: 4px;
+        }
+
+
+        .form-header p {
+
+            font-size: 12px;
+
+            color: #7b879c;
+        }
+
+
+        .required-text {
+
+            font-size: 11px;
+
+            color: #8a94a6;
+        }
+
+
+        /* =========================================
+           INPUT GRID
+        ========================================= */
+
+        .input-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        /* =========================================
+           INDIVIDUAL INPUT BOX
+        ========================================= */
+
+        .input-box {
+
+            padding: 18px;
+
+            border: 1px solid #e4e8ef;
+
+            border-radius: 13px;
+
+            background: #fbfcfe;
+
+            transition: all 0.2s ease;
+        }
+
+
+        .input-box:hover {
+
+            border-color: #b9c8f5;
+
+            background: #ffffff;
+
+            box-shadow:
+                0 6px 20px rgba(49,87,213,0.07);
+        }
+
+
+        .input-box label {
+
+            display: block;
+
+            color: #27364d;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 9px;
+        }
+
+
+        .input-box label span {
+
+            color: #3157d5;
+        }
+
+
+        /* =========================================
+           INPUTS
+        ========================================= */
+
+        input,
+        select {
+
+            width: 100%;
+
+            height: 48px;
+
+            border: 1px solid #d9dfe9;
+
+            border-radius: 8px;
+
+            background: #ffffff;
+
+            color: #27364d;
+
+            padding: 0 13px;
+
+            font-size: 13px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+
+        input::placeholder {
+
+            color: #9aa5b5;
+        }
+
+
+        input:hover,
+        select:hover {
+
+            border-color: #b7c0ce;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #3157d5;
+
+            box-shadow:
+                0 0 0 3px rgba(49,87,213,0.10);
+        }
+
+
+        .hint {
+
+            margin-top: 7px;
+
+            color: #8a94a6;
+
+            font-size: 10px;
+        }
+
+
+        .full {
+
+            grid-column: 1 / -1;
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================= */
+
+        .button-row {
+
+            margin-top: 28px;
+
+            display: flex;
+
+            justify-content: flex-end;
+        }
+
+
+        button {
+
+            height: 52px;
+
+            min-width: 260px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #3157d5,
+                    #4773e6
+                );
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px rgba(49,87,213,0.25);
+
+            transition: 0.25s;
+        }
+
+
+        button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 27px rgba(49,87,213,0.30);
+        }
+
+
+        button:active {
+
+            transform: translateY(0);
+        }
+
+
+        /* =========================================
+           RESULT
+        ========================================= */
+
+        .result {
+
+            margin-top: 22px;
+
+            padding: 18px;
+
+            border-radius: 11px;
+
+            text-align: center;
+
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+
+        .positive {
+
+            background: #fff1f3;
+
+            border: 1px solid #ffd0d7;
+
+            color: #c6284a;
+        }
+
+
+        .negative {
+
+            background: #ecfbf5;
+
+            border: 1px solid #b9ead5;
+
+            color: #087a52;
+        }
+
+
+        /* =========================================
+           INFORMATION SECTION
+        ========================================= */
+
+        .information {
+
+            padding: 65px 0 20px;
+        }
+
+
+        .information-title {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .information-title h2 {
+
+            font-size: 26px;
+
+            color: #172033;
+
+            margin-bottom: 7px;
+        }
+
+
+        .information-title p {
+
+            font-size: 13px;
+
+            color: #7b879c;
+        }
+
+
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .info-card {
+
+            background: white;
+
+            padding: 27px;
+
+            border-radius: 15px;
+
+            border: 1px solid #e7eaf0;
+
+            text-align: center;
+        }
+
+
+        .info-icon {
+
+            width: 54px;
+
+            height: 54px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 14px;
+
+            background: #eef3ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+
+        .info-card h3 {
+
+            font-size: 15px;
+
+            color: #27364d;
+
+            margin-bottom: 8px;
+        }
+
+
+        .info-card p {
+
+            color: #7b879c;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+
+            margin-top: 65px;
+
+            background: #101d3d;
+
+            color: #aebbd3;
+
+            padding: 28px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            font-size: 11px;
+        }
+
+
+        footer strong {
+
+            color: white;
+        }
+
+
+        /* =========================================
+           TABLET
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .hero-container {
+
+                width: 90%;
+            }
+
+
+            .content {
+
+                width: 90%;
+            }
+
+
+            .hero h1 {
+
+                font-size: 42px;
+            }
+
+
+            .hero-visual {
+
+                width: 35%;
+            }
+
+
+            .medical-circle {
+
+                width: 220px;
+
+                height: 220px;
+            }
+
+
+            .heart {
+
+                font-size: 80px;
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                padding: 0 5%;
+            }
+
+
+            .nav-right {
+
+                display: none;
+            }
+
+
+            .hero {
+
+                min-height: 500px;
+            }
+
+
+            .hero-container {
+
+                width: 90%;
+            }
+
+
+            .hero-content {
+
+                width: 100%;
+            }
+
+
+            .hero h1 {
+
+                font-size: 36px;
+            }
+
+
+            .hero-visual {
+
+                display: none;
+            }
+
+
+            .input-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .full {
+
+                grid-column: auto;
+            }
+
+
+            .info-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .form-card {
+
+                padding: 25px 20px;
+            }
+
+
+            .button-row {
+
+                display: block;
+            }
+
+
+            button {
+
+                width: 100%;
+            }
+
+
+            footer {
+
+                flex-direction: column;
+
+                gap: 10px;
+
+                text-align: center;
+            }
+
+        }
+
+
+        /* =========================================
+           SMALL MOBILE
+        ========================================= */
+
+        @media (max-width: 450px) {
+
+            .logo {
+
+                width: 150px;
+
+                height: 55px;
+            }
+
+
+            .hero {
+
+                min-height: 460px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 31px;
+            }
+
+
+            .hero-description {
+
+                font-size: 14px;
+            }
+
+
+            .form-header {
+
+                align-items: flex-start;
+            }
+
+
+            .required-text {
+
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVIGATION
+========================================= -->
+
+<nav class="navbar">
+
+
+    <img
+        src="{{ url_for('static', filename='viharatech_logo.jpeg') }}"
+        class="logo"
+        alt="Vihara Tech Logo"
+    >
+
+
+    <div class="nav-right">
+
+
+        <div class="nav-link">
+
+            Heart Disease Prediction
+
+        </div>
+
+
+        <div class="nav-button">
+
+            ML Prediction
+
+        </div>
+
+
+    </div>
+
+
+</nav>
+
+
+<!-- =========================================
+     HERO SECTION
+========================================= -->
+
+<section class="hero">
+
+
+    <div class="hero-container">
+
+
+        <div class="hero-content">
+
+
+            <div class="hero-label">
+
+                <span class="status-dot"></span>
+
+                Machine Learning Prediction System
+
+            </div>
+
+
+            <h1>
+
+                Smart Heart Disease
+                <span>Prediction</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                Enter the patient's clinical information and
+                use our trained machine learning model to
+                generate a heart disease prediction.
+
+            </p>
+
+
+            <div class="hero-features">
+
+
+                <div class="hero-feature">
+
+                    <span class="check">
+
+                        ✓
+
+                    </span>
+
+                    Simple input
+
+                </div>
+
+
+                <div class="hero-feature">
+
+                    <span class="check">
+
+                        ✓
+
+                    </span>
+
+                    Machine learning
+
+                </div>
+
+
+                <div class="hero-feature">
+
+                    <span class="check">
+
+                        ✓
+
+                    </span>
+
+                    Instant prediction
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- HERO HEART -->
+
+        <div class="hero-visual">
+
+
+            <div class="medical-circle">
+
+                <div class="heart">
+
+                    ❤️
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card one">
+
+                <span class="floating-number">
+
+                    ML
+
+                </span>
+
+                Prediction Model
+
+            </div>
+
+
+            <div class="floating-card two">
+
+                <span class="floating-number">
+
+                    7
+
+                </span>
+
+                Patient Features
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =========================================
+     MAIN CONTENT
+========================================= -->
+
+<div class="content">
+
+
+    <!-- =====================================
+         PATIENT FORM
+    ====================================== -->
+
+    <div class="form-card">
+
+
+        <div class="form-header">
+
+
+            <div class="form-heading">
+
+
+                <div class="form-icon">
+
+                    🩺
+
+                </div>
+
+
+                <div>
+
+                    <h2>
+
+                        Patient Information
+
+                    </h2>
+
+
+                    <p>
+
+                        Enter the required details below
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="required-text">
+
+                * Required fields
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================
+             FORM
+        ================================== -->
+
+        <form action="/predict" method="POST">
+
+
+            <div class="input-grid">
+
+
+                <!-- AGE -->
+
+                <div class="input-box">
+
+
+                    <label for="age">
+
+                        Age <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        placeholder="Enter age"
+                        min="1"
+                        max="120"
+                        step="1"
+                        required
+                    >
+
+
+                    <div class="hint">
+
+                        Range: 1 – 120 years
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- GENDER -->
+
+                <div class="input-box">
+
+
+                    <label for="sex">
+
+                        Gender <span>*</span>
+
+                    </label>
+
+
+                    <select
+                        id="sex"
+                        name="sex"
+                        required
+                    >
+
+
+                        <option value="">
+
+                            Select Gender
+
+                        </option>
+
+
+                        <option value="1">
+
+                            Male
+
+                        </option>
+
+
+                        <option value="0">
+
+                            Female
+
+                        </option>
+
+
+                    </select>
+
+
+                    <div class="hint">
+
+                        Select patient's gender
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- CHEST PAIN -->
+
+                <div class="input-box full">
+
+
+                    <label for="cp">
+
+                        Chest Pain Type <span>*</span>
+
+                    </label>
+
+
+                    <select
+                        id="cp"
+                        name="cp"
+                        required
+                    >
+
+
+                        <option value="">
+
+                            Select Chest Pain Type
+
+                        </option>
+
+
+                        <option value="0">
+
+                            Typical Angina
+
+                        </option>
+
+
+                        <option value="1">
+
+                            Atypical Angina
+
+                        </option>
+
+
+                        <option value="2">
+
+                            Non-Anginal Pain
+
+                        </option>
+
+
+                        <option value="3">
+
+                            Asymptomatic
+
+                        </option>
+
+
+                    </select>
+
+
+                    <div class="hint">
+
+                        Select the patient's chest pain type
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- MAXIMUM HEART RATE -->
+
+                <div class="input-box">
+
+
+                    <label for="thalach">
+
+                        Maximum Heart Rate <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="thalach"
+                        name="thalach"
+                        placeholder="Enter maximum heart rate"
+                        min="50"
+                        max="250"
+                        step="1"
+                        required
+                    >
+
+
+                    <div class="hint">
+
+                        Range: 50 – 250 bpm
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- OLDPEAK -->
+
+                <div class="input-box">
+
+
+                    <label for="oldpeak">
+
+                        Oldpeak <span>*</span>
+
+                    </label>
+
+
+                    <input
+                        type="number"
+                        id="oldpeak"
+                        name="oldpeak"
+                        placeholder="Example: 0.2"
+                        min="0"
+                        max="10"
+                        step="0.1"
+                        required
+                    >
+
+
+                    <div class="hint">
+
+                        Range: 0 – 10
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SLOPE -->
+
+                <div class="input-box">
+
+
+                    <label for="slope">
+
+                        Slope <span>*</span>
+
+                    </label>
+
+
+                    <select
+                        id="slope"
+                        name="slope"
+                        required
+                    >
+
+
+                        <option value="">
+
+                            Select Slope
+
+                        </option>
+
+
+                        <option value="0">
+
+                            Upsloping
+
+                        </option>
+
+
+                        <option value="1">
+
+                            Flat
+
+                        </option>
+
+
+                        <option value="2">
+
+                            Downsloping
+
+                        </option>
+
+
+                    </select>
+
+
+                    <div class="hint">
+
+                        Select the slope value
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- THAL -->
+
+                <div class="input-box">
+
+
+                    <label for="thal">
+
+                        Thal <span>*</span>
+
+                    </label>
+
+
+                    <select
+                        id="thal"
+                        name="thal"
+                        required
+                    >
+
+
+                        <option value="">
+
+                            Select Thal
+
+                        </option>
+
+
+                        <option value="0">
+
+                            Normal
+
+                        </option>
+
+
+                        <option value="1">
+
+                            Fixed Defect
+
+                        </option>
+
+
+                        <option value="2">
+
+                            Reversible Defect
+
+                        </option>
+
+
+                        <option value="3">
+
+                            Other
+
+                        </option>
+
+
+                    </select>
+
+
+                    <div class="hint">
+
+                        Select the thal value
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================
+                 PREDICT BUTTON
+            ================================== -->
+
+            <div class="button-row">
+
+
+                <button type="submit">
+
+                    Generate Prediction &nbsp; →
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+    <!-- =====================================
+         PREDICTION RESULT
+    ====================================== -->
+
+    {% if result is defined %}
+
+
+        {% if result[0] == 1 %}
+
+
+            <div class="result positive">
+
+                ❤️ Heart Disease Detected
+
+            </div>
+
+
+        {% else %}
+
+
+            <div class="result negative">
+
+                ✓ No Heart Disease Detected
+
+            </div>
+
+
+        {% endif %}
+
+
+    {% endif %}
+
+
+    <!-- =====================================
+         INFORMATION SECTION
+    ====================================== -->
+
+    <section class="information">
+
+
+        <div class="information-title">
+
+
+            <h2>
+
+                How The System Works
+
+            </h2>
+
+
+            <p>
+
+                A simple machine learning workflow for prediction
+
+            </p>
+
+
+        </div>
+
+
+        <div class="info-grid">
+
+
+            <!-- CARD 1 -->
+
+            <div class="info-card">
+
+
+                <div class="info-icon">
+
+                    📝
+
+                </div>
+
+
+                <h3>
+
+                    Enter Details
+
+                </h3>
+
+
+                <p>
+
+                    Provide the patient's age, gender,
+                    chest pain type and other required
+                    clinical information.
+
+                </p>
+
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="info-card">
+
+
+                <div class="info-icon">
+
+                    🤖
+
+                </div>
+
+
+                <h3>
+
+                    Model Analysis
+
+                </h3>
+
+
+                <p>
+
+                    The trained machine learning model
+                    processes the submitted patient
+                    information.
+
+                </p>
+
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="info-card">
+
+
+                <div class="info-icon">
+
+                    📊
+
+                </div>
+
+
+                <h3>
+
+                    Prediction Result
+
+                </h3>
+
+
+                <p>
+
+                    The system displays the prediction
+                    generated by the trained model.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+
+    <div>
+
+        © 2026 <strong>Vihara Tech</strong>
+
+    </div>
+
+
+    <div>
+
+        Heart Disease Prediction System
+
+    </div>
+
+
+</footer>
+
+
+</body>
+
+</html>
